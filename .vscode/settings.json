@@ -6,5 +6,12 @@
         "**/__pycache__": true,
         "**/*.__pycache__": true,
         "**/.pytest_cache": true,
-    }
+    },
+    "runOnSave.commands": [
+        {
+            "match": "schema.db",
+            "command": "./sync_db.sh",
+            "runIn": "terminal"
+        }
+    ]
 }
