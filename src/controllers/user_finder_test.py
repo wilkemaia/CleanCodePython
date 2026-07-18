@@ -20,7 +20,7 @@ class UserRepositoryMock:
 def test_find_by_person_name():
     person_name = "my_person_name"
     user_repo = UserRepositoryMock()
-    user_finder = UserFinder(user_repo)
+    user_finder = UserFinderr(user_repo)
     
     response  =  user_finder.find_by_persona_name(person_name)
     print(user_repo.select_user_att)
