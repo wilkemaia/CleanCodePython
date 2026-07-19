@@ -4,8 +4,7 @@ class UserFinder(UserFinderInterface):
     def __init__(self,users_repository: UserRepositoryInterface):
         self.__users_repo = users_repository
         
-    
-    def  find_by_persona_name(self,person_name:str)-> dict:
+    def  find_by_person_name(self,person_name:str)-> dict:
         selected_users = self.__select_and_validate_user(person_name)
         return self.__format_response(selected_users)
     
@@ -27,6 +26,7 @@ class UserFinder(UserFinderInterface):
                 "age":users.age,
                 "height": users.height
             })
+            
             return {
                 "Type":"Users",
                 "count":len(formatted_users),

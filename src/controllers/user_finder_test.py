@@ -1,28 +1,34 @@
 from src.models.entities.users  import Users
 from .user_finder import UserFinder
 
+
+class User:
+    def __init__(self, id, person_name, age, height):
+        self.id = id
+        self.person_name = person_name
+        self.age = age
+        self.height = height
 class UserRepositoryMock:
     def __init__(self):
         self.select_user_att = {}
-        
-    
+         
     def  select_user(self,person_name:str)-> list:
         self.select_user_att["person_name"] = person_name
-        return[
+        return [
             Users(
-                id = 123,
-                person_name= "Mock_persona",
-                age = 78,
-                height =1.80
+                 123,
+                 "Mock_persona",
+                 78,
+                1.80
             )
         ]
         
 def test_find_by_person_name():
     person_name = "my_person_name"
     user_repo = UserRepositoryMock()
-    user_finder = UserFinderr(user_repo)
+    user_finder = UserFinder(user_repo)
     
-    response  =  user_finder.find_by_persona_name(person_name)
+    response  =  user_finder.find_by_person_name(person_name)
     print(user_repo.select_user_att)
     print(response)
     
