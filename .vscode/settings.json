@@ -13,5 +13,7 @@
             "command": "./sync_db.sh",
             "runIn": "terminal"
         }
-    ]
+    ],
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+    "python.defaultInterpreterPath": "venv/bin/python"
 }

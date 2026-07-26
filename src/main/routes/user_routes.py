@@ -15,3 +15,11 @@ def register_user():
      
      return jsonify (http_response.body),http_response.status_code
    
+
+@user_route_bp.route("/user/find/<person_name>",methods=['GET'])
+def finder_user(person_name):
+     http_request = HttpRequest(param= {"person_name":person_name})
+     user_finder  =  user_finder_composer()
+     http_response  =  user_finder.handle_find_by_person_name(http_request)
+     
+     return jsonify (http_response.body),http_response.status_code
