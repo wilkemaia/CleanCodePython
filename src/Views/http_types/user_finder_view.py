@@ -1,6 +1,8 @@
 from src.controllers.interfaces.user_finder import UserFinderInterface
+from src.errors.erro_handler import handle_errors
 from .http_request import HttpRequest
 from .http_response import HttpResponse
+
 class UserFinderView:
     def __init__(self,controller:UserFinderInterface):
         self.__controller = controller
@@ -16,7 +18,4 @@ class UserFinderView:
                 body=response
             )
         except Exception as exception:
-            return HttpResponse(
-                body={"error":str(exception)},
-                status_code=500
-            )
+            return handle_errors(exception)
