@@ -1,5 +1,6 @@
 from src.models.repositories.interfaces.users_repository import UserRepositoryInterface
 from .interfaces.user_creator import UserCreatorInterface
+from src.errors.errors_type.http_bad_request import HttpBadRequest
 class UserCreator(UserCreatorInterface):
     def __init__(self,users_repository:UserRepositoryInterface):# Inverção da dependência
         self.__user_repo = users_repository
@@ -14,7 +15,7 @@ class UserCreator(UserCreatorInterface):
         select_user = self.__user_repo.select_user(person_name)
         if (not select_user or len(select_user)==0) :
             return
-        raise Exception("Usuário já cadastrado")
+        raise HttpBadRequest("Usuário já cadastrado")
     
     
     def __create_new_user(self,person_name:str,age:int,height:float)->None:
