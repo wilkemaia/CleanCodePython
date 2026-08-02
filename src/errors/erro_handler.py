@@ -1,8 +1,9 @@
 from src.Views.http_types.http_response import HttpResponse
 from .errors_type.http_not_found import HttpNotFoundError
 from .errors_type.http_bad_request import HttpBadRequest
+from .errors_type.http_unprocessable_entity import HttpunprocessaAbleEntity
 def handle_errors(error:Exception) -> HttpResponse:
-    if isinstance(error,(HttpNotFoundError,HttpBadRequest)):
+    if isinstance(error,(HttpNotFoundError,HttpBadRequest,HttpunprocessaAbleEntity)):
         return HttpResponse (
             status_code = error.status_code,
             body={
@@ -17,7 +18,7 @@ def handle_errors(error:Exception) -> HttpResponse:
         )
     
     return HttpResponse (
-                status_code = error.status_code,
+                status_code = 500,
                 body={
                    "error" : [{
                        "title":"Server error",
